@@ -2,7 +2,7 @@
 
 The data in the file Airfreight.csv contains the monthly air freight of U.S. carriers for 10 years.  For this data I will develop a time series model.
 
-![App Screenshot](https://www.google.com/url?sa=i&url=https%3A%2F%2Fsonar.freightwaves.com%2Fsonar-data%2Fair-cargo&psig=AOvVaw2dJTJK6MnDacPacPwtxeXs&ust=1638122222655000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKie84OPufQCFQAAAAAdAAAAABAJ?raw=True)
+![App Screenshot](https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img,w_1192,h_678/https://sonar.freightwaves.com/wp-content/uploads/2019/12/CF8743E6-D493-424E-ABD2-01F2BA13D2CA.jpeg?raw=True)
 
 ## Authors
 
