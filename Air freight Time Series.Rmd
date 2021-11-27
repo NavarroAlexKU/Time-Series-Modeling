@@ -1,0 +1,44 @@
+---
+title: "Times Series Project"
+author: "Alex Navarro"
+date: "11/26/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r, cache=TRUE}
+# Read Data Into System:
+Airfreight <- read.csv("Airfreight.csv")
+# Load TSA Library:
+library(TSA)
+# Plot ACF:
+acf(Airfreight$Ton.miles,lag.max = 36,ci.type='ma', col = c("red"))
+# Plot Time Series Plot:
+plot(Airfreight$Ton.miles,type = 'o', main = "Time Series Plot", col = c("green"))
+# Plot First Difference of Plot:
+plot(diff(Airfreight$Ton.miles),type='o', col = c("green"), main = "Time Series Plot of 1st Difference")
+# Plot First Difference of ACF:
+acf(diff(Airfreight$Ton.miles),lag.max = 36,ci.type='ma', col = c("red"))
+# Plot the 12th Difference of Time Series Plot:
+plot(diff(Airfreight$Ton.miles,lag=12),type = 'o', main = " Time Series Plot of 12th Difference", col = "red")
+# 12th difference of ACF Plot:
+acf(diff(Airfreight$Ton.miles,lag=12),lag.max=36,ci.type='ma')
+# Taking A Additional 1st Difference For The Time Series Plot:
+plot(diff(diff(Airfreight$Ton.miles),lag=12),type='o', main = "Taking Additional 1st Difference Plot", col = c("blue"))
+# Taking 1st Difference Again for ACF Plot:
+acf(diff(diff(Airfreight$Ton.miles,lag=12)),lag.max = 36,ci.type='ma')
+# Plot PACF:
+pacf(diff(diff(Airfreight$Ton.miles,lag=12)),lag.max=36,ci.type='ma')
+# Fit Model:
+fit <- arima(Airfreight$Ton.miles, order = c(0,1,1), seasonal = list(order=c(0,1,1),period = 12))
+fit
+# Perform diagnostics:
+plot(rstandard(fit),ylab='Standardized Residuals',type='o', col = c("blue"))
+hist(rstandard(fit), col = c("red","blue","green"))
+qqnorm(residuals(fit))
+qqline(residuals(fit))
+acf(rstandard(fit),lag.max=36)
+Box.test(residuals(fit),lag=36,type="Ljung",fitdf=1)
+```
